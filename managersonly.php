@@ -18,16 +18,16 @@ $user_check = mysql_query("SELECT * FROM `kasutajad` WHERE `kasutajanimi`='".$id
 
 
 //Check do we have username and password
+$oigused = $row2["oigused"];
 if ($oigused =! "Omanik"){
 echo "Te ei ole omanik ja teil pole siia leheküljele mitte mingisuguseid õigusi! Käige minema!";
 header('Location: game.php');   
 }
-if(!$username && !$password){
+else if(!$username && !$password){
 
 echo "Tere külaline! Enne mängimist pead sisse <br> <a href=login.php>logima!</a> või <a href=register.php>Registreerima</a>";
 break;
 }
-$oigused = $row2["oigused"];
 else{
 
 
