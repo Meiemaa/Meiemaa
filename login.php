@@ -120,8 +120,6 @@ else if($password != $real_password){
 die("Vale parool!");
 
 }
-else
-{
 
 
 
@@ -134,7 +132,6 @@ session_register("password", $password);
 
 
 echo "Edukalt sisse logitud!";
-}
 ?>
 <meta HTTP-EQUIV="REFRESH" content="0; url=game.php">
 
