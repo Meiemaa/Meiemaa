@@ -148,7 +148,7 @@ echo "Edukalt sisse logitud, ".$username." mine  <a href=game.php>mängu!</a>";
  border="3" cellpadding="2" cellspacing="2" bgcolor="white">
 	<tbody>
 	<tr>
-	  <td>&copy; Ivar Äkke. Meiemaa!</td>
+	  <td><? include("footer.php"); ?></td>
 	</tr>
 	</tbody>
 	</table>

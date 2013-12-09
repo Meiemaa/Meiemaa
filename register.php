@@ -193,7 +193,7 @@ echo $username.", sa oled registreeritud. Aitäh!<br><a href=login.php>Logi siss
  border="3" cellpadding="2" cellspacing="2" bgcolor="white">
 	<tbody>
 	<tr>
-	  <td>&copy; Ivar Äkke. Meiemaa!</td>
+	  <td><? include("footer.php"); ?></td>
 	</tr>
 	</tbody>
 	</table>
