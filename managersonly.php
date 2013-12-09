@@ -102,9 +102,10 @@ else{
 	  if(isset($_POST["bann"])){
 	  $usertoban = $_POST["banuser"];
       $test = "";
+	  $bannednow = 1;
 	  if ($usertoban =! $test){
-	  echo"Kasutaja $username on edukalt bännitud! Mwhahahah!<br/>";
-	  mysql_query("UPDATE kasutajad SET banned = banned + $m88mispuiduarv WHERE kasutajanimi='".$id."' LIMIT 1") or die(mysql_error());
+	  echo"Kasutaja $usertoban on edukalt bännitud! Mwhahahah!<br/>";
+	  mysql_query("UPDATE kasutajad SET banned = banned + $bannednow  WHERE kasutajanimi='".$usertoban."' LIMIT 1") or die(mysql_error());
 	  }
 	                  }
 	  ?>
