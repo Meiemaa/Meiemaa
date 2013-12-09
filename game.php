@@ -19,7 +19,7 @@ $user_check = mysql_query("SELECT * FROM `kasutajad` WHERE `kasutajanimi`='".$id
 
 //Check do we have username and password
 $banned = $row2["banned"];
-if ($banned = "1"){
+if ($banned == 1){
 echo "Te olete bänned! Kaoge siit mängust kus kurat!";
 header('Location: index.php');   
 }

@@ -111,7 +111,7 @@ $row4 = mysql_fetch_array($select_pass);
 
 $real_password = $row4['parool'];
 
-if ($banned = "1"){
+if ($banned == 1){
 echo "Te olete bänned! Kaoge siit mängust kus kurat!";
 header('Location: index.php');   
 }
