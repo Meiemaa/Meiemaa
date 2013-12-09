@@ -87,6 +87,7 @@ $select_user = mysql_query("SELECT * FROM kasutajad WHERE id='$id'");
 
 $row2 = mysql_fetch_array($select_user);
 
+$banned = $row2["banned"];
 $user = $row2['kasutajanimi'];
 
 
@@ -110,16 +111,17 @@ $row4 = mysql_fetch_array($select_pass);
 
 $real_password = $row4['parool'];
 
-$banned = $row2["banned"];
 if ($banned = "1"){
 echo "Te olete bänned! Kaoge siit mängust kus kurat!";
 header('Location: index.php');   
 }
-else if($password != $real_password){
+elseif($password != $real_password){
 
 die("Vale parool!");
 
 }
+else
+{
 
 
 
@@ -132,6 +134,7 @@ session_register("password", $password);
 
 
 echo "Edukalt sisse logitud!";
+}
 ?>
 <meta HTTP-EQUIV="REFRESH" content="0; url=game.php">
 
