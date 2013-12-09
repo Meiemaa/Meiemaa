@@ -33,12 +33,12 @@
 <a href="login.php">Logi Sisse</a></br>
 <a href="register.php">Registreeri</a></br>
 </td>
-      <td style="width: 606px; height: 219px;">Uudised:
+      <td style="width: 606px; height: 219px;">
+	  Uudised:</br>
 	  9.12.2013 16:48 Ivar Äkke </br>
 	  *Lisatud turg. Seal saad müüa oma puitu. </br>
 	  *Lisatud chat. </br>
 	  *Lisatud Admini paneel. </br>
-	  
 	  </td>
       <td style="width: 133px; height: 219px;"></td>
     </tr>
