@@ -76,7 +76,7 @@ break;
 
 <body onbeforeunload="signInForm.signInButt.name='signOut';signInOut()" onload="hideShow('hide')">
 
-<h1>&lt;/DIC&gt; Chat Box</h1>
+<h1>Chat Box</h1>
 <form onsubmit="signInOut();return false" id="signInForm">
 	<input id="userName" type="text">
 	<input id="signInButt" name="signIn" type="submit" value="Sign in">
