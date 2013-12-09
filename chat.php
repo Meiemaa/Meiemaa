@@ -4,6 +4,7 @@
 <div id="write" style="text-align:center;">
 <?php
 include("connect.php");
+if(isset($_POST["send"])){
 $name = $row2["kasutajanimi"];
 $message = $_POST["message"];
 //Check if message is empty and send the error code
@@ -28,6 +29,7 @@ else{
    $search = array("<",">",">","<");
    //Insert a new row in the chat table
    mysql_query("insert into chat values ('" . time() . "', '" . str_replace($search,"",$name) . "', '" . @$REMOTE_ADDR . "', '" . str_replace($search,"",$message) . "')") or die(8);
+}
 }
 ?>
 <br/>Tekst:
