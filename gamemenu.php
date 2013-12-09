@@ -6,7 +6,8 @@
 	 <a href="logout.php">Logi Välja</a></br>
 	 
 	 <?
-	 if ($row2["oigused"]; = "Omanik"){
+	 $oigused = $row2["oigused"];
+	 if ($oigused = "Omanik"){
 	 echo "<a href="managersonly.php">Kontrolli/Muuda Asju(Owners Only)</a></br>";
 	 }
 	 ?>
