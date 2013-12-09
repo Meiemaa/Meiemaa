@@ -46,6 +46,23 @@ break;
 
 <script type="text/javascript" src="ajax.js"></script>
 <script type="text/javascript" src="chatbox.js"></script>
+<style>
+.message {
+   overflow:hidden;
+   width:498px;
+   margin-bottom:5px;
+   border:1px solid #999;
+}
+.messagehead {
+   overflow:hidden;
+   background:#FFC;
+   width:500px;
+}
+.messagecontent {
+   overflow:hidden;
+   width:496px;
+}
+</style>
   <title></title>
 </head>
 <body background="/img/background.jpg">
@@ -71,24 +88,9 @@ break;
 		include("gamemenu.php");
 	?>
       <td style="width: 606px; height: 219px;">
-	  
-
-
-<body onbeforeunload="signInForm.signInButt.name='signOut';signInOut()" onload="hideShow('hide')">
-
-<h1>Chat Box</h1>
-<form onsubmit="signInOut();return false" id="signInForm">
-	<input id="userName" type="text">
-	<input id="signInButt" name="signIn" type="submit" value="Sign in">
-	<span id="signInName">User name</span>
-	</form>
-
-	<div id="chatBox"></div>
-	<div id="usersOnLine"></div>
-	<form onsubmit="sendMessage();return false" id="messageForm">
-		<input id="message" type="text">
-		<input id="send" type="submit" value="Send">
-<div id="serverRes"></div></form>
+	 <?
+		include("chat.php");
+	?>
 	  </td>
       <td style="width: 133px; height: 219px;">
 	<?
@@ -100,7 +102,7 @@ break;
  border="3" cellpadding="2" cellspacing="2" bgcolor="white">
 	<tbody>
 	<tr>
-	  <td>&copy; Ivar Äkke. Meiemaa!</td>
+	  <td>&copy; Ivar Äkke/Kristjan Krimm. Meiemaa!</td>
 	</tr>
 	</tbody>
 	</table>
