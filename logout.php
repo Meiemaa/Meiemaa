@@ -13,3 +13,4 @@ echo "Oled välja logitud! <a href=index.php>Pealeht</a> or <a href=login.php>Lo
 
 
 ?>
+<meta HTTP-EQUIV="REFRESH" content="0; url=index.php">

@@ -109,7 +109,7 @@ else{
  border="3" cellpadding="2" cellspacing="2" bgcolor="white">
 	<tbody>
 	<tr>
-	  <td>&copy; Ivar Äkke/Kristjan Krimm. Meiemaa!</td>
+	  <td><? include("footer.php"); ?></td>
 	</tr>
 	</tbody>
 	</table>

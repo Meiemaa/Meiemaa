@@ -128,19 +128,20 @@ session_register("username", $username);
 session_register("password", $password);
 
 
-echo "Edukalt sisse logitud, ".$username." mine  <a href=game.php>mängu!</a>";
+echo "Edukalt sisse logitud!"
+?>
+<meta HTTP-EQUIV="REFRESH" content="0; url=game.php">
 
 
 
-
-
+<?
 }
+?>
 
 
 
 
 
-?> 
 	  </td>
       <td style="width: 133px; height: 219px;"></td>
     </tr>

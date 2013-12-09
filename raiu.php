@@ -118,7 +118,7 @@ break;
  border="3" cellpadding="2" cellspacing="2" bgcolor="white">&copy; 
 	<tbody>
 	<tr>
-	  <td>&copy; Ivar Äkke. Meiemaa!</td>
+	  <td>&<? include("footer.php"); ?></td>
 	</tr>
 	</tbody>
 	</table>
