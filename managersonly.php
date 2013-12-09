@@ -94,9 +94,26 @@ else{
       <td style="width: 606px; height: 219px;">
 	  <center>
 	 <?
-	 include("show-messages.php");
+	 include("adminshowmessages.php");
 		include("chat.php");
 	?>
+		  <?
+	  // Turg
+	  if(isset($_POST["bann"])){
+	  $usertoban = $_POST["banuser"];
+      $test = "";
+	  if ($usertoban =! $test){
+	  echo"Kasutaja $username on edukalt bännitud! Mwhahahah!<br/>";
+	  mysql_query("UPDATE kasutajad SET banned = banned + $m88mispuiduarv WHERE kasutajanimi='".$id."' LIMIT 1") or die(mysql_error());
+	  }
+	                  }
+	  ?>
+	<br/>
+		Pane tondile bänni lihtsalt kirjutades siia tema kasutajanime:
+	  <form action="" method="POST">
+	  <input type="text" name="banuser"><input type="submit" name="bann" value="Bänn!">
+	  </form>
+	
 	  </td>
       <td style="width: 133px; height: 219px;">
 	<?

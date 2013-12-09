@@ -18,8 +18,12 @@ $user_check = mysql_query("SELECT * FROM `kasutajad` WHERE `kasutajanimi`='".$id
 
 
 //Check do we have username and password
-
-if(!$username && !$password){
+$banned = $row2["banned"];
+if ($banned = "1"){
+echo "Te olete bänned! Kaoge siit mängust kus kurat!";
+header('Location: index.php');   
+}
+else if(!$username && !$password){
 
 echo "Tere külaline! Enne mängimist pead sisse <br> <a href=login.php>logima!</a> või <a href=register.php>Registreerima</a>";
 break;
