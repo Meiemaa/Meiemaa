@@ -24,7 +24,8 @@ if(!$username && !$password){
 echo "Tere külaline! Enne mängimist pead sisse <br> <a href=login.php>logima!</a> või <a href=register.php>Registreerima</a>";
 break;
 }
-elseif ($row2["oigused"]; =! "Omanik"){
+$oigused = $row2["oigused"];
+elseif ($oigused =! "Omanik"){
 echo "Te ei ole omanik ja teil pole siia leheküljele mitte mingisuguseid õigusi! Käige minema!";
 header('Location: game.php');   
 }
