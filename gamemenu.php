@@ -4,5 +4,11 @@
 	  <a href="turg.php">Mine turule</a></br>
 	  <a href="raiu.php">Mine metsa</a></br>
 	 <a href="logout.php">Logi Välja</a></br>
+	 
+	 <?
+	 if ($row2["oigused"]; = "Omanik"){
+	 echo "<a href="managersonly.php">Kontrolli/Muuda Asju(Owners Only)</a></br>";
+	 }
+	 ?>
 
 </td>
