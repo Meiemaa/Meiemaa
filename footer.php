@@ -1,5 +1,5 @@
 <html>
 
-&copy; Ivar Äkke. Meiemaa!
+&copy; Ivar Äkke, Kristjan Krimm. Meiemaa!
 
 </html>
