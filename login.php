@@ -133,7 +133,7 @@ session_register("username", $username);
 session_register("password", $password);
 
 
-echo "Edukalt sisse logitud!"
+echo "Edukalt sisse logitud!";
 }
 ?>
 <meta HTTP-EQUIV="REFRESH" content="0; url=game.php">
