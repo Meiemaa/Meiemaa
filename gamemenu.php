@@ -8,7 +8,7 @@
 	 <?
 	 $oigused = $row2["oigused"];
 	 if ($oigused = "Omanik"){
-	 echo "<a href="managersonly.php">Kontrolli/Muuda Asju(Owners Only)</a></br>";
+	 echo "<a href='managersonly.php'>Kontrolli/Muuda Asju(Owners Only)</a></br>";
 	 }
 	 ?>
 
