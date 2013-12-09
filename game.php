@@ -88,6 +88,7 @@ break;
 		include("gamemenu.php");
 	?>
       <td style="width: 606px; height: 219px;">
+	  <center>
 	 <?
 	 include("show-messages.php");
 		include("chat.php");
@@ -97,6 +98,7 @@ break;
 	<?
 		include("andmed.php");
 	?>
+	</center>
 	  </td>
     </tr>
 	<table style="text-align: left; width: 864px; height: 42px;"
