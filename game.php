@@ -89,6 +89,7 @@ break;
 	?>
       <td style="width: 606px; height: 219px;">
 	 <?
+	 include("show-messages.php");
 		include("chat.php");
 	?>
 	  </td>
