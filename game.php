@@ -12,8 +12,8 @@ $username = $_SESSION['username'];
 
 $password = $_SESSION['password'];
 $id = $_SESSION["username"];
-$user_check = mysql_query("SELECT * FROM `kasutajad` WHERE `kasutajanimi`='".$id."'") or die(mysql_error());
-    $row2 = mysql_fetch_assoc($user_check);
+$user_check = $mysqli->query("SELECT * FROM `kasutajad` WHERE `kasutajanimi`='".$id."'") or die($mysqli->error);
+    $row2 = $user_check->fetch_assoc();
 
 
 
@@ -25,8 +25,8 @@ header('Location: index.php');
 }
 else if(!$username && !$password){
 
-echo "Tere külaline! Enne mängimist pead sisse <br> <a href=login.php>logima!</a> või <a href=register.php>Registreerima</a>";
-break;
+    echo "Tere külaline! Enne mängimist pead sisse <br> <a href=login.php>logima!</a> või <a href=register.php>Registreerima</a>";
+    die();
 
 }else{
 
@@ -88,18 +88,18 @@ break;
       <td style=" height: 33px;"></td>
       <td style="height: 33px;"><img src="/img/andmed.jpg" alt="andmed"></br></td>
     </tr>
-    <?
+    <?php
 		include("gamemenu.php");
 	?>
       <td style="width: 606px; height: 219px;">
 	  <center>
-	 <?
+	 <?php
 	 include("show-messages.php");
 		include("chat.php");
 	?>
 	  </td>
       <td style="width: 133px; height: 219px;">
-	<?
+	<?php
 		include("andmed.php");
 	?>
 	</center>
@@ -109,7 +109,7 @@ break;
  border="3" cellpadding="2" cellspacing="2" bgcolor="white">
 	<tbody>
 	<tr>
-	  <td><? include("footer.php"); ?></td>
+	  <td><?php include("footer.php"); ?></td>
 	</tr>
 	</tbody>
 	</table>
@@ -127,6 +127,6 @@ break;
 
 </html>
 
-<?
+<?php
 }
 ?>

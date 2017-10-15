@@ -11,8 +11,8 @@ $username = $_SESSION['username'];
 
 $password = $_SESSION['password'];
 $id = $_SESSION["username"];
-$user_check = mysql_query("SELECT * FROM `kasutajad` WHERE `kasutajanimi`='".$id."'") or die(mysql_error());
-    $row2 = mysql_fetch_assoc($user_check);
+$user_check = $mysqli->query("SELECT * FROM `kasutajad` WHERE `kasutajanimi`='".$id."'") or die($mysqli->error);
+    $row2 = $user_check->fetch_assoc();
 
 
 //Check do we have username and password
@@ -20,7 +20,7 @@ $user_check = mysql_query("SELECT * FROM `kasutajad` WHERE `kasutajanimi`='".$id
 if(!$username && !$password){
 
 echo "Tere külaline! Enne mängimist pead sisse <br> <a href=login.php>logima!</a> või <a href=register.php>Registreerima</a>";
-break;
+die();
 
 }else{
 
@@ -61,12 +61,12 @@ break;
       <td style=" height: 33px;"></td>
       <td style="height: 33px;"><img src="/img/andmed.jpg" alt="andmed"></br></td>
     </tr>
-        <?
+        <?php
 		include("gamemenu.php");
 	?>
       <td style="width: 606px; height: 219px;">
 	  <script type="text/javascript" src="jquery.js"></script>
-	  <?
+	  <?php
 	  
 	  if(isset($_POST["raiu"])){
 	  $puu = $row2["puid"];
@@ -79,12 +79,12 @@ break;
 	  $xpvaja = $row2["puuxpvaja"];
 	  echo"Raidusid $puidsaad puud ja said $xpsaad kogemust!";
 	  
-	   mysql_query("UPDATE kasutajad SET puid = puid + $puidsaad WHERE kasutajanimi='".$id."' LIMIT 1") or die(mysql_error());
-	  mysql_query("UPDATE kasutajad SET puuxp = puuxp + $xpsaad WHERE kasutajanimi='".$id."' LIMIT 1") or die(mysql_error());
+	   $mysqli->query("UPDATE kasutajad SET puid = puid + $puidsaad WHERE kasutajanimi='".$id."' LIMIT 1") or die(mysql_error());
+          $mysqli->query("UPDATE kasutajad SET puuxp = puuxp + $xpsaad WHERE kasutajanimi='".$id."' LIMIT 1") or die(mysql_error());
 	   if($xpvaja < $xp){
 		echo "Sa saavutasid puuraidumise leveli. Su puuraidumine on nüüd level $lvlsaad";
-		mysql_query("UPDATE kasutajad SET puulvl = puulvl + 1 WHERE kasutajanimi='".$id."' LIMIT 1") or die(mysql_error());
-		mysql_query("UPDATE kasutajad SET puuxpvaja = puuxpvaja + $xp + 300 WHERE kasutajanimi='".$id."' LIMIT 1") or die(mysql_error());
+           $mysqli->query("UPDATE kasutajad SET puulvl = puulvl + 1 WHERE kasutajanimi='".$id."' LIMIT 1") or die(mysql_error());
+           $mysqli->query("UPDATE kasutajad SET puuxpvaja = puuxpvaja + $xp + 300 WHERE kasutajanimi='".$id."' LIMIT 1") or die(mysql_error());
 	  }
 	 
 
@@ -97,7 +97,7 @@ break;
 	  <form action="" method="POST">
 	  <input type="submit" name="raiu" value="Raiu Puid!" onclick="register()">
 	  </form>
-	  <?
+	  <?php
 		$xpvaja = $row2["puuxpvaja"];
 		$xp = $row2["puuxp"];
 		$xplvlini = $xpvaja-$xp;
@@ -109,7 +109,7 @@ break;
 	  ?>
 	  </td>
       <td style="width: 133px; height: 219px;">
-	<?
+	<?php
 		include("andmed.php");
 	?>
 	  </td>
@@ -118,7 +118,7 @@ break;
  border="3" cellpadding="2" cellspacing="2" bgcolor="white">&copy; 
 	<tbody>
 	<tr>
-	  <td>&<? include("footer.php"); ?></td>
+	  <td>&<?php include("footer.php"); ?></td>
 	</tr>
 	</tbody>
 	</table>
@@ -136,6 +136,6 @@ break;
 
 </html>
 
-<?
+<?php
 }
 ?>

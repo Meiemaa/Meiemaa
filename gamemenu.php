@@ -5,7 +5,7 @@
 	  <a href="raiu.php">Mine metsa</a></br>
 	 <a href="logout.php">Logi Välja</a></br>
 	 
-	 <?
+	 <?php
 	 $oigused = $row2["oigused"];
 	 if ($oigused = "Omanik"){
 	 echo "<a href='managersonly.php'>Admini paneel!</a></br>";

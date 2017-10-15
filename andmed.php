@@ -1,4 +1,4 @@
-  <?
+  <?php
   
 	  echo"Nimi: ".$username."</br>";
 	  echo"Puuraidumise level: $row2[puulvl]</br>";

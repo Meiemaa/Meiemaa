@@ -1,171 +1,145 @@
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <html>
-
-
-
 <head>
-  <meta content="text/html; charset=ISO-8859-1"
- http-equiv="content-type">
-  <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Meiemaa Old</title>
 </head>
-<body background="/img/background.jpg">
-<center>
+<body>
+    <center>
+    <table style="text-align: left; width: 864px; height: 268px;" border="3" cellpadding="2" cellspacing="2" bgcolor="white">
+        <tbody>
+            <tr>
+              <img src="/img/meiemaa.jpg" alt="meiemaa"></br>
+              <td style="height: 33px;"><img src="/img/menu.jpg" alt="menu"></br></td>
+              <td style=" height: 33px;"></td>
+              <td style="height: 33px;"><img src="/img/andmed.jpg" alt="andmed"></br></td>
+            </tr>
+            <tr>
+                <td style="width: 133px; height: 219px;">
+                <a href="index.php">Esileht</a></br>
+                <a href="login.php">Logi Sisse</a></br>
+                <a href="register.php">Registreeri</a></br>
+            </td>
+            <td style="width: 606px; height: 219px;">
+            <?php
+             session_start();
+            //This displays your login form
 
-  
-    
-      
-   
-  
 
-<br>
-<table style="text-align: left; width: 864px; height: 268px;"
- border="3" cellpadding="2" cellspacing="2" bgcolor="white">
-  <tbody>
-    <tr>
-	  <img src="/img/meiemaa.jpg" alt="meiemaa"></br>
-      <td style="height: 33px;"><img src="/img/menu.jpg" alt="menu"></br></td>
-      <td style=" height: 33px;"></td>
-      <td style="height: 33px;"><img src="/img/andmed.jpg" alt="andmed"></br></td>
-    </tr>
-    <tr>
-      <td style="width: 133px; height: 219px;">
-	 <a href="index.php">Esileht</a></br>
-<a href="login.php">Logi Sisse</a></br>
-<a href="register.php">Registreeri</a></br>
-</td>
-      <td style="width: 606px; height: 219px;">
-	  <?php
 
-session_start();
+            ?>
+             <form action='?act=login' method='post'>
+                 Kasutajanimi: <input type='text' name='username' size='30'><br>
+                 Parool: <input type='password' name='password' size='30'><br>
+                 <input type='submit' name='submit' value='Logi sisse'>
+             </form>
 
+            <?php
+            if(isset($_POST["submit"])){
+                //This function will find and checks if your data is correct
 
-//This displays your login form
 
 
 
+                //Collect your info from login form
 
-echo "<form action='?act=login' method='post'>"
+                $username = $_POST['username'];
 
-."Kasutajanimi: <input type='text' name='username' size='30'><br>"
+                $password = $_POST['password'];
 
-."Parool: <input type='password' name='password' size='30'><br>"
 
-."<input type='submit' name='submit' value='Logi sisse'>"
+                include("connect.php");
 
-."</form>";
 
+                //Find if entered data is correct
 
 
+                $result = $mysqli->query("SELECT * FROM kasutajad WHERE kasutajanimi='$username' AND parool='$password'");
 
-if(isset($_POST["submit"])){
-//This function will find and checks if your data is correct
+                $row = $result->fetch_array();
 
+                $id = $row['id'];
 
 
+                $select_user = $mysqli->query("SELECT * FROM kasutajad WHERE id='$id'");
 
-//Collect your info from login form
+                $row2 = $select_user->fetch_array();
 
-$username = $_REQUEST['username'];
+                $banned = $row2["banned"];
+                $user = $row2['kasutajanimi'];
 
-$password = $_REQUEST['password'];
 
+                if($username != $user){
 
-include("connect.php");
+                    die("Sellist kasutajat ei eksisteeri!");
 
+                }
 
-//Find if entered data is correct
 
 
-$result = mysql_query("SELECT * FROM kasutajad WHERE kasutajanimi='$username' AND parool='$password'");
+                $pass_check = $mysqli->query("SELECT * FROM kasutajad WHERE kasutajanimi='$username' AND id='$id'");
 
-$row = mysql_fetch_array($result);
+                $row3 = $pass_check->fetch_array();
 
-$id = $row['id'];
+                $email = $row3['email'];
 
+                $select_pass = $mysqli->query("SELECT * FROM kasutajad WHERE kasutajanimi='$username' AND id='$id' AND email='$email'");
 
-$select_user = mysql_query("SELECT * FROM kasutajad WHERE id='$id'");
+                $row4 = $select_pass->fetch_array();
 
-$row2 = mysql_fetch_array($select_user);
+                $real_password = $row4['parool'];
 
-$banned = $row2["banned"];
-$user = $row2['kasutajanimi'];
+                if ($banned == 1){
+                    echo "Te olete bänned! Kaoge siit mängust kus kurat!";
+                    header('Location: index.php');
+                }
+                else if($password != $real_password){
 
+                    die("Vale parool!");
 
-if($username != $user){
+                }
+                else
+                {
 
-die("Sellist kasutajat ei eksisteeri!");
 
-}
 
+                    //Now if everything is correct let's finish his/her/its login
 
+                    $_SESSION['username'] = $username;
+                    $_SESSION['password'] = $password;
 
-$pass_check = mysql_query("SELECT * FROM kasutajad WHERE kasutajanimi='$username' AND id='$id'");
 
-$row3 = mysql_fetch_array($pass_check);
+                    echo "Edukalt sisse logitud!";
+                }
+                ?>
+                <meta HTTP-EQUIV="REFRESH" content="0; url=game.php">
 
-$email = $row3['email'];
 
-$select_pass = mysql_query("SELECT * FROM kasutajad WHERE kasutajanimi='$username' AND id='$id' AND email='$email'");
 
-$row4 = mysql_fetch_array($select_pass);
+                <?php
 
-$real_password = $row4['parool'];
+            }
+            ?>
 
-if ($banned == 1){
-echo "Te olete bänned! Kaoge siit mängust kus kurat!";
-header('Location: index.php');   
-}
-elseif($password != $real_password){
 
-die("Vale parool!");
 
-}
-else
-{
 
 
+            </td>
+            <td style="width: 133px; height: 219px;"></td>
+            </tr>
+            <table style="text-align: left; width: 864px; height: 42px;" border="3" cellpadding="2" cellspacing="2" bgcolor="white">
+                <tbody>
+                    <tr>
+                     <td><?php include("footer.php"); ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </tbody>
+    </table>
+    <br>
 
-//Now if everything is correct let's finish his/her/its login
-
-
-session_register("username", $username);
-
-session_register("password", $password);
-
-
-echo "Edukalt sisse logitud!";
-}
-?>
-<meta HTTP-EQUIV="REFRESH" content="0; url=game.php">
-
-
-
-<?
-}
-?>
-
-
-
-
-
-	  </td>
-      <td style="width: 133px; height: 219px;"></td>
-    </tr>
-	<table style="text-align: left; width: 864px; height: 42px;"
- border="3" cellpadding="2" cellspacing="2" bgcolor="white">
-	<tbody>
-	<tr>
-	  <td><? include("footer.php"); ?></td>
-	</tr>
-	</tbody>
-	</table>
-  </tbody>
-  
-</table>
-<br>
-
-<br>
-</center>
+    <br>
+    </center>
 </body>
 
 

@@ -12,8 +12,8 @@ $username = $_SESSION['username'];
 
 $password = $_SESSION['password'];
 $id = $_SESSION["username"];
-$user_check = mysql_query("SELECT * FROM `kasutajad` WHERE `kasutajanimi`='".$id."'") or die(mysql_error());
-    $row2 = mysql_fetch_assoc($user_check);
+$user_check = $mysqli->query("SELECT * FROM `kasutajad` WHERE `kasutajanimi`='".$id."'") or die($mysqli->error);
+$row2 = $user_check->fetch_assoc();
 
 
 
@@ -22,7 +22,7 @@ $user_check = mysql_query("SELECT * FROM `kasutajad` WHERE `kasutajanimi`='".$id
 if(!$username && !$password){
 
 echo "Tere külaline! Enne mängimist pead sisse <br> <a href=login.php>logima!</a> või <a href=register.php>Registreerima</a>";
-break;
+die();
 
 }else{
 
@@ -63,12 +63,12 @@ break;
       <td style=" height: 33px;"></td>
       <td style="height: 33px;"><img src="/img/andmed.jpg" alt="andmed"></br></td>
     </tr>
-    <?
+    <?php
 		include("gamemenu.php");
 	?>
       <td style="width: 606px; height: 219px;">
 	  Tere tulemast turule! , Siin sa saad müüa oma asju, hetkel on võimalik müüa meile puitu! <br/>
-	  <?
+	  <?php
 	  // Turg
 	  if(isset($_POST["muu"])){
 	  $puid = $row2["puid"];
@@ -81,20 +81,20 @@ break;
 	  if ($puid > "0"){
 	  if ($puid >= $m88mispuiduarv){
 	  echo"Müüsid $m88mispuiduarv puitu ja said $rahasaad eurot!<br/>";
-	  mysql_query("UPDATE kasutajad SET puid = puid - $m88mispuiduarv WHERE kasutajanimi='".$id."' LIMIT 1") or die(mysql_error());
-	  mysql_query("UPDATE kasutajad SET raha = raha + $rahasaad WHERE kasutajanimi='".$id."' LIMIT 1") or die(mysql_error());
+	  $mysqli->query("UPDATE kasutajad SET puid = puid - $m88mispuiduarv WHERE kasutajanimi='".$id."' LIMIT 1") or die(mysql_error());
+	  $mysqli->query("UPDATE kasutajad SET raha = raha + $rahasaad WHERE kasutajanimi='".$id."' LIMIT 1") or die(mysql_error());
 	  }
 	                  }
 	                           }
 	  ?>
 	  
-	  Puid:<? echo"$row2[puid]";?> <br/>Müü:
+	  Puid:<?php echo $row2["puid"];?> <br/>Müü:
 	  <form action="" method="POST">
 	  <input type="text" name="muupuitu"><input type="submit" name="muu" value="Müü">
 	  </form>
 	  </td>
       <td style="width: 133px; height: 219px;">
-	<?
+	<?php
 		include("andmed.php");
 	?>
 	  </td>
@@ -121,6 +121,6 @@ break;
 
 </html>
 
-<?
+<?php
 }
 ?>

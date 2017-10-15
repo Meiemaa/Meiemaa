@@ -28,7 +28,7 @@ else{
    //This array contains the characters what will be removed from the message and name, because else somebody could send redirection script or links
    $search = array("<",">",">","<");
    //Insert a new row in the chat table
-   mysql_query("insert into chat values ('" . time() . "', '" . str_replace($search,"",$name) . "', '" . @$REMOTE_ADDR . "', '" . str_replace($search,"",$message) . "')") or die(8);
+   $mysqli->query("insert into chat (time, name, message) values ('" . time() . "', '" . str_replace($search,"",$name) . "', '" . str_replace($search,"",$message) . "')") or die(8);
 }
 }
 ?>

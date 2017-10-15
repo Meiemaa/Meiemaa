@@ -75,15 +75,15 @@ include("connect.php");
 
 //Collecting info
 
-$username = $_REQUEST['username'];
+$username = $_POST['username'];
 
-$password = $_REQUEST['password'];
+$password = $_POST['password'];
 
-$pass_conf = $_REQUEST['password_conf'];
+$pass_conf = $_POST['password_conf'];
 
-$email = $_REQUEST['email'];
+$email = $_POST['email'];
 
-$date = $_REQUEST['date'];
+$date = $_POST['date'];
 
 
 //Here we will check do we have all inputs filled
@@ -120,17 +120,17 @@ die("Sisesta email!");
 //Let's check if this username is already in use
 
 
-$user_check = mysql_query("SELECT kasutajanimi FROM kasutajad WHERE kasutajanimi='$username'");
+$user_check = $mysqli->query("SELECT kasutajanimi FROM kasutajad WHERE kasutajanimi='$username'");
 
-$do_user_check = mysql_num_rows($user_check);
+$do_user_check = $user_check->fetch_array();
 
 
 //Now if email is already in use
 
 
-$email_check = mysql_query("SELECT email FROM kasutajad WHERE email='$email'");
+$email_check = $mysqli->query("SELECT email FROM kasutajad WHERE email='$email'");
 
-$do_email_check = mysql_num_rows($email_check);
+$do_email_check = $email_check->num_rows;
 
 
 //Now display errors
@@ -164,11 +164,11 @@ die("Paroolid ei klapi!");
 //If everything is okay let's register this user
 
 
-$insert = mysql_query("INSERT INTO kasutajad (kasutajanimi, parool, email, kuupaev) VALUES ('$username', '$password', '$email', '$date')");
+$insert = $mysqli->query("INSERT INTO kasutajad (kasutajanimi, parool, email, kuupaev) VALUES ('$username', '$password', '$email', '$date')");
 
 if(!$insert){
 
-die("There's little problem: ".mysql_error());
+die("There's little problem: ".$mysqli->error);
 
 }
 
