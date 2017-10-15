@@ -16,14 +16,13 @@ $user_check = $mysqli->query("SELECT * FROM `kasutajad` WHERE `kasutajanimi`='".
     $row2 = $user_check->fetch_assoc();
 
 
-
 //Check do we have username and password
 $banned = $row2["banned"];
 if ($banned == 1){
 echo "Te olete bänned! Kaoge siit mängust kus kurat!";
-header('Location: index.php');   
+//header('Location: index.php');
 }
-else if(!$username && !$password){
+else if(!(isset($_SESSION["username"])) || !(isset($_SESSION["password"]))){
 
     echo "Tere külaline! Enne mängimist pead sisse <br> <a href=login.php>logima!</a> või <a href=register.php>Registreerima</a>";
     die();
